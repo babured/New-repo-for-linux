@@ -1,0 +1,51 @@
+#!/bin/bash
+
+REPO_URL="https://github.com/your-username/your-repo.git"
+REPO_DIR="your-repo"
+COMMIT_MSG="Automated commit from script"
+
+function clone_repo() {
+    if [ -d "$REPO_DIR" ]; then
+        echo "Repository already exists. Skipping clone."
+    else
+        git clone "$REPO_URL" "$REPO_DIR"
+    fi
+}
+
+function pull_repo() {
+    cd "$REPO_DIR" || exit
+    git pull
+    cd ..
+}
+
+function commit_changes() {
+    cd "$REPO_DIR" || exit
+    git add .
+    git commit -m "$COMMIT_MSG"
+    cd ..
+}
+
+function push_changes() {
+    cd "$REPO_DIR" || exit
+    git push
+    cd ..
+}
+
+case "$1" in
+    clone)
+        clone_repo
+        ;;
+    pull)
+        pull_repo
+        ;;
+    commit)
+        commit_changes
+        ;;
+    push)
+        push_changes
+        ;;
+    *)
+        echo "Usage: $0 {clone|pull|commit|push}"
+        exit 1
+        ;;
+esac
