@@ -41,9 +41,6 @@ case "$1" in
     commit)
         commit_changes
         ;;
-    push)
-        push_changes
-        ;;
     *)
         echo "Usage: $0 {clone|pull|commit|push}"
         exit 1
