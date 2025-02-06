@@ -1,8 +1,7 @@
-#!/bin/bash
-
-REPO_URL="https://github.com/your-username/your-repo.git"
-REPO_DIR="your-repo"
-COMMIT_MSG="Automated commit from script"
-
-function clone_repo() {
- 
+if [ "$BUILD_STATUS" = "SUCCESS" ]; then
+  echo "Build was successful, running additional steps..."
+  # Add additional commands here
+  touch f1
+else
+  echo "Build failed, skipping additional steps."
+fi
